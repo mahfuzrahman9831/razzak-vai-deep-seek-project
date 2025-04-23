@@ -65,9 +65,9 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <link rel="stylesheet" href="css/firmware_list.css">
 </head>
 <body>
@@ -104,7 +104,7 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
 
         <div class="search-box">
             <!-- <input type="text" id="searchInput" onkeyup="searchFirmware()" placeholder="Search firmware..." class="form-control"> -->
-            <input type="text" id="searchInput" onkeyup="searchFirmware()" placeholder="Search firmware..." class="input">
+            <input type="text" id="searchInput" onkeyup="searchFirmware()" placeholder="Search firmware..." class="input-field">
             <!-- <input type="text" placeholder="Search Firmware" class="input" /> -->
         </div>
 
@@ -160,9 +160,10 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
         </div>
 
         <?php if ($totalPages > 1): ?>
-        <div class="join mt-2">
+        <div class="pagination">
             <?php if ($page > 1): ?>
-                <a href="?page=<?= $page - 1; ?>" class="join-item btn btn-outline btn-error">Previous</a>
+                <button class="page next"><a href="?page=<?= $page - 1; ?>">Previous</a></button>
+                
             <?php endif; ?>
             
             <div class="join">
@@ -172,14 +173,16 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
             $end = min($totalPages, $page + 2);
             
             for ($i = $start; $i <= $end; $i++): ?>
-                <a href="?page=<?= $i; ?>" class="btn <?= $page === $i ? 'join-item btn' : 'join-item btn' ?>"><?= $i; ?></a>
+                <a href="?page=<?= $i; ?>" class="btn <?= $page === $i ? 'page' : 'page' ?>"><?= $i; ?></a>
             <?php endfor; ?>
             </div>
             
             <?php if ($page < $totalPages): ?>
-                <a href="?page=<?= $page + 1; ?>" class="join-item btn btn-outline btn-secondary">Next</a>
+                <button class="page next"><a href="?page=<?= $page + 1; ?>">Next</a></button>
+                
             <?php endif; ?>
         </div>
+        
         <?php endif; ?>
     </div>
 </div>

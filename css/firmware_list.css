@@ -21,6 +21,21 @@ body {
     overflow-x: hidden;
 }
 
+.input-field {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: 1px solid #d1d5db; /* example */
+    border-radius: 0.375rem;
+    color: #374151;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+
 .sidebar {
     width: var(--sidebar-width);
     background: var(--sidebar-bg);
@@ -275,6 +290,42 @@ cursor: pointer;
     border-color: #bd2130;
 }
 
+.pagination {
+    display: flex;
+    gap: 0.25rem;
+    font-family: sans-serif;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  .pagination a{
+    text-decoration: none;
+  }
+  
+  .page {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    border-radius: 0.375rem;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .page:hover {
+    background-color: #f9fafb;
+  }
+  
+  .page.next {
+    border-color: #d946ef;
+    color: #d946ef;
+  }
+  
+  .page.next:hover {
+    background-color: #fdf4ff;
+  }
+  
+
 @media (max-width: 1200px) {
     #firmer-list-table .td-password{
         min-width:  120px !important;
@@ -374,7 +425,7 @@ cursor: pointer;
     }
 
     #firmer-list-table th{display: none;}
-#firmer-list-table tr .mobile-view{
+    #firmer-list-table tr .mobile-view{
     display: inline !important;
     min-width: 80px;
     text-align: left;
