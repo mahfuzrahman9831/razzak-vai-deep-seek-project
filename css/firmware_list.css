@@ -1,0 +1,335 @@
+:root {
+    --sidebar-width: 220px;
+    --sidebar-bg: #2f3e47;
+    --sidebar-header-bg: #1b252b;
+    --sidebar-hover: #1b252b;
+    --sidebar-active: #3498db;
+    --topbar-bg: #3498db;
+    --card-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    --table-header-bg: #f8f9fa;
+    --table-row-hover: #f9f9f9;
+    --table-border: #eee;
+    --active-color: #28a745;
+    --inactive-color: #dc3545;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 20px 0;
+    background: var(--sidebar-header-bg);
+    margin: 0;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar ul li:hover {
+    background: var(--sidebar-hover);
+}
+
+.sidebar ul li.active {
+    background: var(--sidebar-active);
+}
+
+/* Mobile Toggle Button */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    background: var(--topbar-bg);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Topbar Styles */
+.topbar {
+    height: 60px;
+    background: var(--topbar-bg);
+    color: white;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+    top: 0;
+    z-index: 900;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.topbar-title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.topbar-admin{
+    position: absolute;
+    right: 0;
+    transform: translateX(-20%);
+}
+
+/* Content Area */
+.content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    transition: all 0.3s;
+    width: auto;
+    max-width: none;
+}
+
+
+
+/* Table-specific styles */
+.table-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+}
+
+#firmwareTable tr{
+    border: 1px solid skyblue;
+}
+
+#firmwareTable {
+    /* width: calc(100% - var(--sidebar-width)); */
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    /* table-layout: auto; */
+}
+
+#firmwareTable thead th {
+    background-color: var(--table-header-bg);
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--table-border);
+    position: sticky;
+    top: 0;
+    /* white-space: nowrap; */
+}
+
+#firmwareTable tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--table-border);
+    vertical-align: middle;
+    /* white-space: nowrap; */
+}
+
+#firmwareTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#firmwareTable tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+.status-badge {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.status-active {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--active-color);
+}
+
+.status-inactive {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--inactive-color);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+}
+
+.toggle-btn {
+    background-color: #ffc107;
+    color: #212529;
+    border: 1px solid #ffc107;
+}
+
+.toggle-btn:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .topbar, .content {
+        margin-left: 0;
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    #firmwareTable {
+        display: block;
+        width: 100%;
+    }
+    
+    #firmwareTable thead {
+        display: none;
+    }
+    
+    #firmwareTable tbody, 
+    #firmwareTable tr, 
+    #firmwareTable td {
+        display: block;
+        width: 100%;
+    }
+    
+    #firmwareTable tr {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    
+    #firmwareTable td {
+        padding: 10px 15px;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    #firmwareTable td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        font-weight: 600;
+        text-align: left;
+    }
+    
+    .action-buttons {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 576px) {
+    .content {
+        padding: 15px;
+    }
+    
+    #firmwareTable td {
+        padding-left: 40%;
+    }
+    
+    #firmwareTable td::before {
+        width: 35%;
+    }
+    
+    .action-btn {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .sidebar {
+        width: 80%;
+    }
+}
