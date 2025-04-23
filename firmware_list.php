@@ -109,15 +109,15 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
         </div>
 
         <div class="table-container">
-            <table id="firmwareTable">
+            <table id="firmer-list-table">
                 <thead>
                     <tr>
                         <th>S.No</th>
                         <th>File ID</th>
-                        <th>File Name</th>
-                        <th>Password</th>
+                        <th class="td-file-name">File Name</th>
+                        <th class="td-password">Password</th>
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th class="td-action">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,15 +126,17 @@ $result = $conn->query("SELECT * FROM files ORDER BY id DESC LIMIT $offset, $lim
                     while ($row = $result->fetch_assoc()):
                         $statusClass = $row['status'] === 'Active' ? 'status-active' : 'status-inactive';
                     ?>
-                    <tr>
-                        <td data-label="S.No"><?= $serial++; ?></td>
-                        <td data-label="File ID"><?= htmlspecialchars($row['file_id']); ?></td>
-                        <td data-label="File Name"><?= htmlspecialchars($row['file_name']); ?></td>
-                        <td data-label="Password"><?= htmlspecialchars($row['password']); ?></td>
+                    <tr class="table-row">
+                        <td data-label="S.No"><span class="mobile-view">S.No :</span><?= $serial++; ?></td>
+                        <td data-label="File ID"><span class="mobile-view">File ID :</span> <?= htmlspecialchars($row['file_id']); ?></td>
+                        <td class="td-file-name" data-label="File Name"><span class="mobile-view">File Name :</span><?= htmlspecialchars($row['file_name']); ?></td>
+                        <td class="td-password" data-label="Password"><span class="mobile-view">Password :</span><?= htmlspecialchars($row['password']); ?></td>
                         <td data-label="Status">
+                        <span class="mobile-view">Status:</span>
                             <span class="status-badge <?= $statusClass; ?>"><?= $row['status']; ?></span>
                         </td>
-                        <td data-label="Actions">
+                        <td class="td-action" data-label="Actions">
+                        <span class="mobile-view">Actions:</span>
                             <div class="action-buttons">
                                 <a href="?toggle_id=<?= $row['id']; ?>" 
                                    class="action-btn toggle-btn">

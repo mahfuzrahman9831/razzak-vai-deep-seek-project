@@ -21,7 +21,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: var(--sidebar-width);
     background: var(--sidebar-bg);
@@ -77,7 +76,6 @@ body {
     background: var(--sidebar-active);
 }
 
-/* Mobile Toggle Button */
 .sidebar-toggle {
     display: none;
     position: fixed;
@@ -94,7 +92,6 @@ body {
     cursor: pointer;
 }
 
-/* Topbar Styles */
 .topbar {
     height: 60px;
     background: var(--topbar-bg);
@@ -111,19 +108,18 @@ body {
     text-align: center;
 }
 
-.topbar-title{
+.topbar-title {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.topbar-admin{
+.topbar-admin {
     position: absolute;
     right: 0;
     transform: translateX(-20%);
 }
 
-/* Content Area */
 .content {
     margin-left: var(--sidebar-width);
     padding: 20px;
@@ -132,54 +128,88 @@ body {
     max-width: none;
 }
 
-
-
-/* Table-specific styles */
 .table-container {
     margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
+    overflow: auto;
     width: 100%;
 }
 
-#firmwareTable tr{
-    border: 1px solid skyblue;
-}
-
-#firmwareTable {
-    /* width: calc(100% - var(--sidebar-width)); */
-    border-collapse: separate;
-    border-spacing: 0;
+#firmer-list-table {
+    border-collapse: collapse;
+    border: 1px solid gray !important;
     background: white;
-    border: 1px solid black;
     border-radius: 15px;
-    /* table-layout: auto; */
+    width: 100%;
+    min-width: 0;
+
 }
 
-#firmwareTable thead th {
-    background-color: var(--table-header-bg);
-    padding: 12px 15px;
+#firmer-list-table td,
+#firmer-list-table th{
+    min-width: 60px;
+    text-align:center;
+}
+#firmer-list-table .td-password{
+  min-width:  170px !important;
+  text-align: center;
+}
+
+#firmer-list-table .td-action{
+    padding: 0 10px;
+    min-width: 230px;
+}
+
+#firmer-list-table tr{
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid gray !important;
+    padding: 10px 0;
+    background-color: white;
+    transition: 0.3s;
+    align-items: center;
+}
+#firmer-list-table tr:first-child{
+    border-bottom: 1px solid gray !important;
+}
+
+#firmer-list-table tr:last-child{
+    border: none !important;
+}
+
+#firmer-list-table tr:hover{
+    background-color: rgb(236, 236, 236) !important;
+cursor: pointer;
+}
+
+#firmer-list-table .td-file-name{
     text-align: left;
-    font-weight: 600;
-    border-bottom: 2px solid var(--table-border);
-    position: sticky;
-    top: 0;
-    /* white-space: nowrap; */
 }
 
-#firmwareTable tbody td {
-    padding: 12px 15px;
-    border-bottom: 1px solid var(--table-border);
-    vertical-align: middle;
-    /* white-space: nowrap; */
+#firmer-list-table tr .mobile-view{
+    display: none !important;
 }
 
-#firmwareTable tbody tr:last-child td {
+
+
+
+
+#firmer-list-table .td-file-name {
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    flex-grow: 1;
+    max-width: unset;
+}
+
+#firmware-table tbody td.td-action {
+    max-width: 500px;
+}
+
+#firmware-table tbody tr:last-child td {
     border-bottom: none;
 }
 
-#firmwareTable tbody tr:hover {
+#firmware-table tbody tr:hover {
     background-color: var(--table-row-hover);
 }
 
@@ -203,7 +233,9 @@ body {
 .action-buttons {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .action-btn {
@@ -243,60 +275,71 @@ body {
     border-color: #bd2130;
 }
 
+@media (max-width: 1200px) {
+    #firmer-list-table .td-password{
+        min-width:  120px !important;
+        text-align: center;
+      }
+}
 
-
-/* Responsive Styles */
 @media (max-width: 992px) {
     .sidebar {
         transform: translateX(-100%);
     }
-    
+
     .sidebar.active {
         transform: translateX(0);
     }
-    
+
     .topbar, .content {
         margin-left: 0;
     }
-    
+
     .sidebar-toggle {
         display: block;
     }
+
+   
+
 }
 
 @media (max-width: 768px) {
-    #firmwareTable {
+    #firmware-table {
         display: block;
         width: 100%;
     }
-    
-    #firmwareTable thead {
+
+    #firmware-table thead {
         display: none;
     }
-    
-    #firmwareTable tbody, 
-    #firmwareTable tr, 
-    #firmwareTable td {
+
+    #firmware-table tbody, 
+    #firmware-table tr, 
+    #firmware-table td {
         display: block;
         width: 100%;
     }
-    
-    #firmwareTable tr {
+
+    #firmware-table tr {
         margin-bottom: 15px;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         position: relative;
     }
-    
-    #firmwareTable td {
+
+    #firmware-table td {
         padding: 10px 15px;
         text-align: right;
         position: relative;
         padding-left: 50%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        max-width: none;
     }
-    
-    #firmwareTable td::before {
+
+    #firmware-table td::before {
         content: attr(data-label);
         position: absolute;
         left: 15px;
@@ -304,32 +347,63 @@ body {
         padding-right: 10px;
         font-weight: 600;
         text-align: left;
+        white-space: nowrap;
     }
-    
+
     .action-buttons {
         justify-content: flex-end;
     }
+
+    #firmer-list-table tr{
+        flex-direction: column !important;
+        align-items: start;
+        gap: 15px;
+        padding: 5px 10px;
+    }
+
+    #firmer-list-table td{
+        display: flex ;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #firmer-list-table .td-action{
+        padding: 0 !important;
+        margin: 0 !important;
+
+    }
+
+    #firmer-list-table th{display: none;}
+#firmer-list-table tr .mobile-view{
+    display: inline !important;
+    min-width: 80px;
+    text-align: left;
+}
+
+
 }
 
 @media (max-width: 576px) {
     .content {
         padding: 15px;
     }
-    
-    #firmwareTable td {
+
+    #firmware-table td {
         padding-left: 40%;
     }
-    
-    #firmwareTable td::before {
+
+    #firmware-table td::before {
         width: 35%;
     }
-    
+
     .action-btn {
         padding: 5px 8px;
         font-size: 0.8rem;
     }
-    
+
     .sidebar {
         width: 80%;
     }
+
+ 
 }
